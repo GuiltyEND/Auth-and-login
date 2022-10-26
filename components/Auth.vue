@@ -31,7 +31,7 @@ const signUp = async () => {
 };
 
 const login = async () => {
-  const { user, error } = await client.auth.signIn({
+  const { user, error } = await client.auth.signInWithPassword({
     email: email.value,
     password: password.value,
   });
