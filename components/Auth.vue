@@ -22,7 +22,7 @@ const isSignUp = ref(false);
 const client = useSupabaseClient();
 
 const signUp = async () => {
-  const { user, error } = await client.auth.signUp({
+  const { user, error } = await supabase.auth.signUpWithPassword({
     email: email.value,
     password: password.value,
   });
@@ -31,7 +31,7 @@ const signUp = async () => {
 };
 
 const login = async () => {
-  const { user, error } = await client.auth.signInWithPassword({
+  const { user, error } = await supabase.auth.signIn({
     email: email.value,
     password: password.value,
   });
