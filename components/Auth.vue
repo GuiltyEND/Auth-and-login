@@ -4,7 +4,7 @@
       <input type="email" placeholder="Email" v-model="email" />
       <input type="password" placeholder="Password" v-model="password" />
       <button type="submit">
-        <span v-if="isSignup">Sign up</span>
+        <span v-if="isSignUp">Sign up</span>
         <span v-else>Login</span>
       </button>
     </form>
