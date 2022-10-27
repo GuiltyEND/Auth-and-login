@@ -16,27 +16,26 @@
 </template>
 
 <script setup >
+const supabase = useSupabaseClient();
+
 const email = ref("");
 const password = ref("");
 const isSignUp = ref(false);
-const client = useSupabaseClient();
-
-const signUp = async () => {
-  const { user, error } = await supabase.auth.signUpWithPassword({
-    email: email.value,
-    password: password.value,
-  });
-  console.log("user", user);
-  console.log("error", error);
-};
 
 const login = async () => {
   const { user, error } = await supabase.auth.signIn({
     email: email.value,
     password: password.value,
   });
-  console.log("user", user);
-  console.log("error", error);
+  if (error) throw error;
+};
+
+const signUp = async () => {
+  const { user, error } = await supabase.auth.signUpWithPassword({
+    email: email.value,
+    password: password.value,
+  });
+  if (error) throw error;
 };
 
 const user = useSupabaseUser();
@@ -47,19 +46,5 @@ onMounted(() => {
     }
   });
 });
-
-// const handleLogin = async () => {
-//   try {
-//     loading.value = true;
-//     const { error } = await supabase.auth.signInWithOtp({
-//       email: email.value,
-//     });
-//     if (error) throw error;
-//     alert("Check your email for the login link!");
-//   } catch (error) {
-//     alert(error.error_description || error.message);
-//   } finally {
-//     loading.value = false;
-//   }
-// };
 </script>
+
