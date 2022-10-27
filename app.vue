@@ -1,7 +1,5 @@
 <template>
-  <Auth />
+  <div>
+    <NuxtLayout><NuxtPage /></NuxtLayout>
+  </div>
 </template>
-
-<script setup>
-const user = useSupabaseUser();
-</script>
