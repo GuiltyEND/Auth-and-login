@@ -15,7 +15,7 @@ definePageMeta({
 
 onMounted(() => {
   watchEffect(() => {
-    if (user.value) {
+    if (!user.value) {
       navigateTo("/");
     }
   });

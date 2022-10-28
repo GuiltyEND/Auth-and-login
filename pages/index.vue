@@ -19,6 +19,7 @@
 definePageMeta({
   middleware: "auth",
 });
+
 const supabase = useSupabaseClient();
 
 const email = ref("");
@@ -40,6 +41,7 @@ const signUp = async () => {
   });
   if (error) throw error;
 };
+
 const user = useSupabaseUser();
 onMounted(() => {
   watchEffect(() => {
