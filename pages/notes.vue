@@ -1,29 +1,53 @@
 <template>
-  <form class="form-widget" @submit.prevent="updateProfile">
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="text" :value="user.email" disabled />
-    </div>
-    <div>
-      <label for="username">Username</label>
-      <input id="username" type="text" v-model="username" />
-    </div>
+  <div class="bg-black min-h-screen py-32 px-10">
+    <div class="p-10 rounded-lg lg:w-1/2 mx-auto">
+      <form class="flex flex-col gap-2" @submit.prevent="updateProfile">
+        <div class="mb-5">
+          <label class="block mb-2 text-gray-500 font-bold" for="email"
+            >Email</label
+          >
+          <input
+            class="p-3 w-full bg-gray-600 text-white rounded"
+            id="email"
+            type="text"
+            :value="user.email"
+            disabled
+          />
+        </div>
+        <div class="mb-10">
+          <label class="block mb-2 text-gray-500 font-bold" for="username"
+            >Username</label
+          >
+          <input
+            class="p-3 bg-gray-600 text-white w-full rounded"
+            id="username"
+            type="text"
+            v-model="username"
+          />
+        </div>
 
-    <div>
-      <input
-        type="submit"
-        class="button primary block"
-        :value="loading ? 'Loading ...' : 'Update'"
-        :disabled="loading"
-      />
-    </div>
+        <div>
+          <input
+            style="cursor: pointer"
+            type="submit"
+            class="w-full mt-2 text-sm text-center underline text-slate-300"
+            :value="loading ? 'Loading ...' : 'Change name'"
+            :disabled="loading"
+          />
+        </div>
 
-    <div>
-      <button class="button block" @click="signOut" :disabled="loading">
-        Sign Out
-      </button>
+        <div>
+          <button
+            class="p-2 text-white bg-green-500 rounded"
+            @click="signOut"
+            :disabled="loading"
+          >
+            Sign Out
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </template>
 
 <script setup>

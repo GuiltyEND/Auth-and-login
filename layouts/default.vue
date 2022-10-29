@@ -3,3 +3,5 @@
     <div><slot /></div>
   </div>
 </template>
+<script>
+</script>
