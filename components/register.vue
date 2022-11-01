@@ -8,18 +8,19 @@
   </button>
   <button
     class="w-full mt-8 text-sm text-center underline text-slate-300"
-    @click="isSignUp = !isSignUp"
+    @click="changeComponent"
   >
-    <span>Create a new account</span>
+    <span>Have an account? Log in instead</span>
   </button>
 </template>
 <script>
 
 export default {
   props:{email:String,password:String},
+  emits:['changeComponent'],
   methods: {
     changeComponent() {
-      this.$emit('changeComponent')
+      this.$emit('changeComponent','Login')
     },
     signUp(){
       const supabase = useSupabaseClient();

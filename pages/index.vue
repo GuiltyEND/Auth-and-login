@@ -20,23 +20,40 @@
           class="p-2 bg-gray-600 text-white rounded"
         > 
       </form>
-      <login 
-        :email="email" 
-        :password="password"
-      />
-      <register 
-        :email="email"
-        :password="password" 
-      />
+      <keep-alive>
+        <component 
+          :is="currentlyAuthComponent"
+          @change-component='changeComponent'
+          :password="password" 
+          :email="email">
+        </component>
+      </keep-alive>
     </div>
   </div>
 </template>
+<script>
+import Login from '../components/login.vue'
+import Register from '../components/register.vue'
 
+export default {
+    components: {
+    Login,
+    Register
+  },
+  data() {
+    return {
+      currentlyAuthComponent:'Login'
+    }
+  },
+
+  methods: {
+    changeComponent(component) {
+    this.currentlyAuthComponent = component
+    }
+  } 
+}
+</script>
 <script setup>
-import login from '../components/login.vue'
-import register from '../components/register.vue'
-
-
 
 const supabase = useSupabaseClient();
 
@@ -45,20 +62,10 @@ definePageMeta({
   layout: "autorization",
 });
 
-
-
-const isSignUp = ref(false);
 const email = ref("");
 const password = ref("");
-
-
-
-
-
-
-
-
 const user = useSupabaseUser();
+
 onMounted(() => {
   watchEffect(() => {
     if (user.value) {
